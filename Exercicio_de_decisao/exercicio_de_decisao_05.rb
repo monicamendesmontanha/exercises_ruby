@@ -16,9 +16,11 @@ segunda_nota = gets.to_f
 media = calcula_media(primeira_nota,segunda_nota)
 
 if media == 10.0
-  puts "Aprovado com Distinção!"
+  resultado = "Aprovado com Distinção!"
 elsif media >= 7.0
-  puts "Aprovado!"
+  resultado = "Aprovado!"
 else
-  puts "Reprovado!"
+  resultado = "Reprovado!"
 end
+
+puts resultado
