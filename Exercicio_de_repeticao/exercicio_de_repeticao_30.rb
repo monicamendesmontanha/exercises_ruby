@@ -14,13 +14,19 @@ def calcula_preco(preco_do_pao,paes_comprados)
   preco_do_pao * paes_comprados
 end
 
-#  contador = 1
-#  tabela = []
-# while contador <= paes_comprados do
-#    preco_a_pagar = calcula_preco(preco_do_pao, paes_comprados)
-#    tabela << preco_a_pagar
-#    contador = contador + 1
-#  end
+def cria_tabela(quantidade_paes_comprados)
+  contador = 1
+  tabela = []
+  
+  while contador <= quantidade_paes_comprados do
+    preco_a_pagar = calcula_preco(preco_do_pao, paes_comprados)
+    tabela << preco_a_pagar
+    contador = contador + 1
+  end
+  
+  return tabela
+
+end
 
 
 
@@ -33,5 +39,7 @@ paes_comprados = gets.to_i
 preco_a_pagar = calcula_preco(preco_do_pao, paes_comprados)
 puts preco_a_pagar
 
-#puts tabela
+
+tabela = cria_tabela(paes_comprados)
+puts tabela
 
