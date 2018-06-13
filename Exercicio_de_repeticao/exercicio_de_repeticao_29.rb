@@ -22,9 +22,11 @@
 #    contador = contador + 1    
 #  end 
 #end
+PRECO = 1.99
+
 
 def calcula_preco(unidade)
-  1.99 * unidade
+  PRECO * unidade
 end
 
 def calcula_tabela_de_precos(produtos)
