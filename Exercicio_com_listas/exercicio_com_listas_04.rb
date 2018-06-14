@@ -4,7 +4,7 @@
 vetor = []
 
 print "Digite um nome com 10 letras: "
-letras = gets.chomp
+letras = gets.split('')
 
 vetor << letras
 puts vetor
@@ -14,13 +14,13 @@ consoantes = []
 
 
 for n in vetor
-  if n == "a" && n == "e" && n == "i" && n == "o" && n == "u"
+  if n == "a" || n == "e" || n == "i" || n == "o" || n == "u"
     vogais << n
-  else
+  else n != "a" && n != "e" && n != "i" && n != "o" && n != "u"
     consoantes << n
   end
 end
 
-puts vogais
-puts consoantes
+#puts vogais
+#puts consoantes
 puts "O vetor é composto por #{consoantes.size} consoantes."
