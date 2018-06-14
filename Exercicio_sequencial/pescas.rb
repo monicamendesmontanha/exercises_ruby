@@ -152,7 +152,9 @@ puts total # => 19
 -------------------------------------------------------------------------
 
 MÉTODOS (ações)
-array.TAB => Mostrar todas as possibilidades de métodos (y or n) 
+array.TAB => Mostrar todas as posarray.each do |elm|
+  puts elm
+endsibilidades de métodos (y or n) 
 
 .size => mostra quantos elementos tem no array.
 

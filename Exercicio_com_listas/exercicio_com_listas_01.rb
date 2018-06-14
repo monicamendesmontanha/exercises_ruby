@@ -1,10 +1,5 @@
 #Faça um Programa que leia um vetor de 5 números inteiros e mostre-os.
 
-
-
-#print "Digite um numero: "
-#numero = gets.to_i
-
 array = []
 vetor = 5
 contador = 0
