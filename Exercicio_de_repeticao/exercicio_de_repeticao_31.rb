@@ -17,3 +17,49 @@
 #Troco: R$ 11.00
 #...
 
+#NÃO SEI SEPARAR EM "PRODUTO 1, 2, 3 PARA APRESENTARA NO FINAL"
+#NÃO SEI RECOMEÇAR O PROGRAMA AO PONTO INICIAL AUTOMATICAMENTE PARA UMA NOVA COMPRA.
+
+def entrada_produtos(resp)
+  compras =[]
+
+  while resp != 0
+
+    print "Digite o valor do produto: "
+    resp = gets.to_f
+    compras << resp
+
+  end
+
+  return compras
+end
+
+def total_compras(x)
+  total = 0
+    x.each do |n|
+    total = total + n
+  end
+
+  return total
+end
+
+def troco(x,y)
+  x - y
+end
+ 
+print "Para encerrar, aperte ZERO."
+print "Digite o valor do produto: "
+resp = gets.to_f
+
+
+compras = entrada_produtos(resp)
+puts "Produto: #{compras}."
+
+total = total_compras(compras)
+print "TOTAL: R$ #{total}."
+
+print "DINHEIRO: "
+dinheiro = gets.to_f
+
+troco = troco(dinheiro,total)
+print "TROCO: R$ #{troco}."
