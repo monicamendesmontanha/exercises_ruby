@@ -28,8 +28,6 @@ def cria_tabela(quantidade_paes_comprados)
 
 end
 
-
-
 print "Qual o preço do pão? "
 preco_do_pao = gets.to_f
 
@@ -39,7 +37,5 @@ paes_comprados = gets.to_i
 preco_a_pagar = calcula_preco(preco_do_pao, paes_comprados)
 puts preco_a_pagar
 
-
 tabela = cria_tabela(paes_comprados)
 puts tabela
-
