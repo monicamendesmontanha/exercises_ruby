@@ -38,7 +38,7 @@ end
 
 
 
-# O "codigo" abaixo ta saindo sempre o referente ao codigo da ultima cidade digitada.
+# O "codigo" abaixo ta saindo sempre retornando o referente ao codigo da ultima cidade digitada.
 maior_indice_acidentes = conjunto_acidentes.max
 puts "1) O maior indice é de #{maior_indice_acidentes} acidentes e corresponde a cidade #{codigo}."
 menor_indice_acidentes = conjunto_acidentes.min
@@ -49,7 +49,7 @@ media_veiculos = total_veiculos/5
 puts " 3) A media é de #{media_veiculos} veiculos nas cinco cidades."
 
 
-
+# Dificuldade pra solucionar o problema "f. 4)" da questão.
 if veiculos <= 200 
     cidades_com_menos_veiculos = []
     cidades_com_menos_veiculos << veiculos
