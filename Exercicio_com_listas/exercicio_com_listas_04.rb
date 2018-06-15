@@ -13,7 +13,6 @@ puts vetor
 vogais = []
 consoantes = []
 
-
 #TENTATIVA COM FOR
 #for n in vetor
 #  if n == "a" || n == "e" || n == "i" || n == "o" || n == "u"
@@ -23,13 +22,10 @@ consoantes = []
 #  end
 #end
 
-
-
 # TENTATIVA COM EACH
 #vetor.each do |n|
 #  consoantes << n == "a" || n == "e" || n == "i" || n == "o" || n == "u"
 #end
-
 
 # TENTATIVA COM SELECT
 #consoantes << vetor.select { |n| n == "a" || n == "e" || n == "i" || n == "o" || n == "u"}
