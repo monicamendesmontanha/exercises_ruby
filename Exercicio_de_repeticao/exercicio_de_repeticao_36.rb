@@ -16,13 +16,12 @@ print "Quer montar a tabuada de qual número: "
 tabuada = gets.to_i
 
 print "Começar por qual número: "
-inicio = gets.to_i
+contador = gets.to_i
 
 print "Terminar em qual número: "
 termino = gets.to_i
 
-contador = 0
-while inicio < termino do
+while contador < termino do
   resultado = tabuada * (contador + 1)
   puts "#{tabuada} x #{contador} = #{resultado}"
   contador = contador + 1
