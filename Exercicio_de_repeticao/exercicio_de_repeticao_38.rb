@@ -15,7 +15,7 @@ aumento_anual = 1.5
 
 while ano >= 1997 do
   novo_aumento_anual = aumento_anual * 2
-  aumento_anual << novo_aumento_anual
+  aumento_anual = novo_aumento_anual
   #return aumento_anual
   salario_atual = aumento_anual * SALARIO_INICIAL
   ano = ano + 1
