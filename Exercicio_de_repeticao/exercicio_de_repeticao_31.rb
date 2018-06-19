@@ -17,7 +17,7 @@
 #Troco: R$ 11.00
 #...
 
-#NÃO SEI SEPARAR EM "PRODUTO 1, 2, 3 PARA APRESENTARA NO FINAL"
+#NÃO SEI SEPARAR EM "PRODUTO 1, 2, 3 PARA APRESENTARA NO FINAL" (Tentei por .split('') e não deu certo)
 #NÃO SEI RECOMEÇAR O PROGRAMA AO PONTO INICIAL AUTOMATICAMENTE PARA UMA NOVA COMPRA.
 
 def entrada_produtos(resp)
@@ -28,7 +28,6 @@ def entrada_produtos(resp)
     print "Digite o valor do produto: "
     resp = gets.to_f
     compras << resp
-
   end
 
   return compras
