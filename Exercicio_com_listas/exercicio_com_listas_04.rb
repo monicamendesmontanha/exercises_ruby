@@ -4,7 +4,7 @@
 letras = []
 
 print "Digite um nome com 10 letras: "
-letras = gets.split('')
+letras = gets.chomp.split('')
 
 consoantes = []
 
