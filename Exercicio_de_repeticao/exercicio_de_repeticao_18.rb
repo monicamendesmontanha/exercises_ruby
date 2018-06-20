@@ -27,16 +27,16 @@ puts "A soma total do array é de: #{soma}."
 
 
 
-
-
 array_decrescente = []
 maior = 0
 
-array.each_with_index do |n, maior|
-  if n > maior
-    maior = n
+array.each_with_index in |maior|
+  if maior > index
 
-    array_decrescente << n
+    array_decrescente << maior
+    
+    index = index + 1
+    puts maior
   end
 end
 
@@ -47,3 +47,25 @@ puts "O menor número desse array é: #{array_decrescente[array_decrescente.size
 
 
 
+#Exemplos de como pode ser usado o FOR:
+
+#(Primeira Opção):
+
+#for i in 0..5
+#  puts "Value of local variable is #{i}"
+#end
+
+# OU (Segunda Opção):
+
+#(0..5).each do |i|
+#  puts "Value of local variable is #{i}"
+#end
+
+#EM AMBOS, o resultado será:
+
+#Value of local variable is 0
+#Value of local variable is 1
+#Value of local variable is 2
+#Value of local variable is 3
+#Value of local variable is 4
+#Value of local variable is 5
