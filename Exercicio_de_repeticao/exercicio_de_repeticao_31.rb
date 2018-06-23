@@ -12,16 +12,19 @@
 #Produto 1: R$ 2.20
 #Produto 2: R$ 5.80
 #Produto 3: R$ 0
-#Total: R$ 9.00
+#Total: R$ 8.00
 #Dinheiro: R$ 20.00
-#Troco: R$ 11.00
+#Troco: R$ 12.00
 #...
 
 #NÃO SEI SEPARAR EM "PRODUTO 1, 2, 3 PARA APRESENTARA NO FINAL" (Tentei por .split('') e não deu certo)
+# => RESOLVIDO NA LINHA 48. 
 #NÃO SEI RECOMEÇAR O PROGRAMA AO PONTO INICIAL AUTOMATICAMENTE PARA UMA NOVA COMPRA.
 
-def entrada_produtos(resp)
+def entrada_produtos
   compras =[]
+  resp = nil
+# "resp = nil" => Usa-se para iniciar a variável como indefinida e ele entrar no While ao menos uma vez.
 
   while resp != 0
 
@@ -42,20 +45,25 @@ def total_compras(x)
   return total
 end
 
+def imprime_carrinho_de_compras(carrinho)
+  carrinho.each_with_index do |produto, index|
+    puts "Produto #{index + 1}: R$ #{produto}"
+  end
+end
+
+
 def troco(x,y)
   x - y
 end
  
-print "Para encerrar, aperte ZERO."
-print "Digite o valor do produto: "
-resp = gets.to_f
+puts "Para encerrar, aperte ZERO."
 
+carrinho = entrada_produtos()
+total = total_compras(carrinho)
 
-compras = entrada_produtos(resp)
-puts "Produto: #{compras}."
+imprime_carrinho_de_compras(carrinho)
 
-total = total_compras(compras)
-print "TOTAL: R$ #{total}."
+puts "TOTAL: R$ #{total}."
 
 print "DINHEIRO: "
 dinheiro = gets.to_f
