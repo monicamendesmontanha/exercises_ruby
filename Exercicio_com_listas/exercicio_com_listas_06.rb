@@ -10,25 +10,49 @@
 TOTAL_ALUNOS = 2
 TOTAL_NOTAS = 3
 
-aprovados = []
-
-TOTAL_ALUNOS.times do |n|
+def obter_notas_do_aluno(numero_de_matricula)
   notas = []
-  TOTAL_NOTAS.times do
-    print "Aluno #{n} :: Digite a nota: "
+  puts "Aluno #{numero_de_matricula}"
+  TOTAL_NOTAS.times do |n|
+    print "Digite a nota #{n + 1}: "
     notas << gets.to_f
   end
 
+  return notas
+end
+
+todas_as_medias = []
+
+TOTAL_ALUNOS.times do |n|
+  numero_de_matricula = n + 1
+
+  notas = obter_notas_do_aluno(numero_de_matricula)
   media = notas.sum/notas.size
 
-  if media >= 7
-    aprovados << media
-  end
+  todas_as_medias << media
 
-  print "Notas do aluno #{n}:"
-  puts notas
+  puts "Notas do aluno #{numero_de_matricula}: #{notas}"
   puts "Média: #{media.round(2)}"
   puts "–––––––––––––––"
 end
 
-puts "O número de alunos com média maior ou igual a 7.0 são: #{aprovados.size}"
+# aprovados = todas_as_medias.select do |media|
+#   media >= 7
+# end
+
+# mais legível
+aprovados = todas_as_medias.select { |media| media >= 7 }
+reprovados = todas_as_medias.select { |media| media < 7 }
+
+# Mais performático para quantidade exorbitante de dados
+# aprovados = []
+# reprovados = []
+# todas_as_medias.each do |media|
+#   if media >= 7
+#     aprovados << media
+#   else
+#     reprovados << media
+#   end
+# end
+
+puts "Quantidade de alunos com média maior ou igual a 7.0: #{aprovados.size}"
