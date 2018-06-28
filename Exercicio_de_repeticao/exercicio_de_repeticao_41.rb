@@ -16,3 +16,31 @@
 #R$ 1.100,00          100                        3                 R$ 366,00
 
 #R$ 1.150,00         150                         6                 R$ 191,67
+
+JUROS_1 = 0
+JUROS_3 = 0.10
+JUROS_6 = 0.15
+
+
+def valor_da_divida(divida, juros)
+  divida + (divida * juros)
+end
+
+print "Digite o valor da dívida: "
+divida = gets
+
+print "Quer parcelar a dívida em quantas vezes? {1, 3, 6, 9 ou 12]"
+quantidade_de_parcelas = gets.chomp
+
+if quantidade_de_parcelas == "1"
+  valor_total = valor_da_divida(divida, JUROS_1)
+elsif quantidade_de_parcelas == "3"
+  valor_total = valor_da_divida(divida, JUROS_3)
+else quantidade_de_parcelas == "6"
+  valor_total = valor_da_divida(divida, JUROS_6)
+end
+
+puts "Valor Total da Dívida: R$ #{valor_total}"
+puts "Valor dos Juros: R$ #{divida*juros}"
+puts "Quantidade de Parcelas: R$ #{quantidade_de_parcelas}"
+puts "Valor de cada Parcela: R$ #{valor_total/quantidade_de_parcelas}"
