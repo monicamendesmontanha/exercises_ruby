@@ -10,22 +10,25 @@
 #...
 #50 - R$ 9.00
 
-def calcula_preco(preco_do_pao,paes_comprados)
-  preco_do_pao * paes_comprados
+def calcula_preco(preco_unitario, total_unidades)
+  preco_unitario * total_unidades
 end
 
-def cria_tabela(quantidade_paes_comprados)
-  contador = 1
+def cria_tabela_precos(preco_unitario, total_unidades)
   tabela = []
-  
-  while contador <= quantidade_paes_comprados do
-    preco_a_pagar = calcula_preco(preco_do_pao, paes_comprados)
-    tabela << preco_a_pagar
-    contador = contador + 1
+
+  total_unidades.times do |unidade|
+    tabela << calcula_preco(preco_unitario, unidade + 1)
   end
   
   return tabela
 
+end
+
+def imprime_tabela_de_precos(tabela_de_precos)
+  tabela_de_precos.each_with_index do |preco, indice|
+    puts "#{indice + 1} R$ #{preco.round(2)}"
+  end
 end
 
 print "Qual o preço do pão? "
@@ -37,5 +40,6 @@ paes_comprados = gets.to_i
 preco_a_pagar = calcula_preco(preco_do_pao, paes_comprados)
 puts preco_a_pagar
 
-tabela = cria_tabela(paes_comprados)
-puts tabela
+tabela = cria_tabela_precos(preco_do_pao, paes_comprados)
+
+imprime_tabela_de_precos(tabela)
