@@ -25,7 +25,7 @@ def coleta_respostas
     respostas << gets.chomp
   end
 
-  resp
+  respostas
 end
 
 def obter_apenas_respostas_positivas(respostas)
