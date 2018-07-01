@@ -9,3 +9,24 @@
 #f. Calcule e mostre a quantidade de valores acima da média calculada;
 #g. Calcule e mostre a quantidade de valores abaixo de sete;
 #h. Encerre o programa com uma mensagem;
+TOTAL_DE_NOTAS = 5
+notas = []
+
+TOTAL_DE_NOTAS.times do
+  print "Digite uma nota: "
+  notas << gets.to_f
+end
+
+puts "--------------------------------"
+puts "Quantidade de notas: #{notas.size}"
+puts "Notas: #{notas}"
+print "Notas + recente até a + antiga: #{notas.reverse}"
+puts "Soma de todas as notas: #{notas.sum}"
+media = notas.sum/notas.size
+puts "Média das notas: #{media}"
+acima_da_media = notas.select { |nota| nota > media}
+puts "Notas acima da média: #{acima_da_media}"
+abaixo_de_sete = notas.select { |nota| nota < 7}
+puts "Notas abaixo de sete: #{abaixo_de_sete}"
+puts "--------------------------------"
+puts "Programa finalizado!"
