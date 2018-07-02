@@ -18,3 +18,20 @@
 #Pior salto: 5.3 m
 #Média dos demais saltos: 5.9 m
 #Resultado final: eRodrigo Curvêllo: 5.9 m
+
+print "Nome do atleta: "
+nome = gets.chomp
+
+QUANTIDADE_SALTOS = 5
+saltos = []
+
+QUANTIDADE_SALTOS.times do |n|
+
+print "#{n+1}º Salto: "
+  saltos << gets.to_i 
+end
+
+print "#{saltos}"
+puts "Melhor salto: #{saltos.sort.last}"
+puts "Pior salto: #{saltos.sort.first}"
+# NAO FACO IDEIA COMO EXCLUIR O PRIMEIRO E O ULTIMO SALTO E ENFIM SELECIONAR OS 3 SALTOS DO MEIO.
