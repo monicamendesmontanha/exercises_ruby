@@ -28,10 +28,18 @@ saltos = []
 QUANTIDADE_SALTOS.times do |n|
 
 print "#{n+1}º Salto: "
-  saltos << gets.to_i 
+  saltos << gets.to_f 
 end
 
-print "#{saltos}"
-puts "Melhor salto: #{saltos.sort.last}"
-puts "Pior salto: #{saltos.sort.first}"
-# NAO FACO IDEIA COMO EXCLUIR O PRIMEIRO E O ULTIMO SALTO E ENFIM SELECIONAR OS 3 SALTOS DO MEIO.
+saltos_ordenados = saltos.sort
+melhor_salto = saltos_ordenados.last
+pior_salto = saltos_ordenados.first
+
+restante = saltos_ordenados.select { |salto| salto != melhor_salto && salto != pior_salto }
+#restante = saltos_ordenados.reject { |salto| salto == melhor_salto || salto == pior_salto }
+media_saltos_restantes = restante.sum / restante.size
+
+puts "Melhor salto: #{melhor_salto} m"
+puts "Pior salto: #{pior_salto} m"
+puts "Média dos demais saltos: #{media_saltos_restantes.round(2)} m"
+puts "Resultado Final: #{nome}: #{media_saltos_restantes.round(2)} m"
