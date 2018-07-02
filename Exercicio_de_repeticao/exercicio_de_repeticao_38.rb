@@ -6,21 +6,27 @@
 #Após concluir isto, altere o programa permitindo que o usuário digite o salário inicial do funcionário.
 
 CONTRATACAO = 1995
-SALARIO_INICIAL = 1.000
+SALARIO_INICIAL = 1000
+AUMENTO_ANUAL_ATE_1997 = 0.015
 
 print "Qual ano que vocẽ quer saber o valor do seu salário? "
-ano = gets.to_f
+ano = gets.to_i
 
-aumento_anual = 1.5
+aumento_anual = AUMENTO_ANUAL_ATE_1997
+salario_atual = SALARIO_INICIAL
 
-while ano >= 1997 do
-  novo_aumento_anual = aumento_anual * 2
-  aumento_anual = novo_aumento_anual
-  #return aumento_anual
-  salario_atual = aumento_anual * SALARIO_INICIAL
-  ano = ano + 1
-#  return salario_atual
+contador = CONTRATACAO
+while contador <= ano do
+  
+  if ano >= 1997
+    aumento_anual = aumento_anual * 2
+  end
+
+  puts "ano: #{contador}, aumento anual: #{aumento_anual}"
+
+  contador = contador + 1
 end
 
+salario_atual = salario_atual + (salario_atual * aumento_anual)
 
 puts "R$ #{salario_atual}"
