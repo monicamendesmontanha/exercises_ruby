@@ -22,3 +22,31 @@
 #  Após concluir isto você poderia incrementar o programa permitindo que o professor 
 #  digite o gabarito da prova antes dos alunos usarem o programa.
 
+gabarito_do_professor = {
+  1 => "A",
+  2 => "B",
+  3 => "C",
+  4 => "D",
+  5 => "E",
+  6 => "E",
+  7 => "D",
+  8 => "C",
+  9 => "B",
+  10 => "A",
+}
+
+Gabarito = Struct.new(:questao, :resposta)
+
+respostas = []
+
+10.times do |n|
+  print "Questão #{n+1} - Resposta: "
+  respostas << gets.chomp
+end
+
+puts "#{respostas}"
+
+respostas.each do |gabarito|
+  ir respostas == 
+end
+
