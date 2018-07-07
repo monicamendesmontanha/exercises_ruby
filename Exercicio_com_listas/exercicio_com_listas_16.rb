@@ -18,3 +18,13 @@
 
 #Desafio: Crie ma fórmula para chegar na posição da lista a partir do
 #salário, sem fazer vários ''ifs'' aninhados.
+
+def salario_comissionado_do_vendedor (vendas_brutas)
+  200 + 0.09 * vendas_brutas
+end
+
+vendas = 3000
+
+total_salario = salario_comissionado_do_vendedor(vendas)
+
+puts "Salário:  #{total_salario}"
