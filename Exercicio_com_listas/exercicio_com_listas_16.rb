@@ -16,15 +16,25 @@
 #h.$900 - $999
 #i. $1000 em diante
 
-#Desafio: Crie ma fórmula para chegar na posição da lista a partir do
+#Desafio: Crie uma fórmula para chegar na posição da lista a partir do
 #salário, sem fazer vários ''ifs'' aninhados.
 
 def salario_comissionado_do_vendedor (vendas_brutas)
   200 + 0.09 * vendas_brutas
 end
 
-vendas = 3000
+#vendas = 3000
+QUANTIDADE_DE_VENDEDORES = 2
+todas_as_vendas = []
 
-total_salario = salario_comissionado_do_vendedor(vendas)
+QUANTIDADE_DE_VENDEDORES.times do |n|
+  puts "---------------"
+  puts "Vendedor #{n+1}"
+  print "Valor de vendas: "
+  todas_as_vendas << gets.to_i
+end
 
-puts "Salário:  #{total_salario}"
+todas_as_vendas.each do |vendas|
+  total_salario = salario_comissionado_do_vendedor(vendas)
+  puts "Salário:  #{total_salario}"
+end
