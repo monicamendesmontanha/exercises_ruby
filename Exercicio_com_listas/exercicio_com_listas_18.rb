@@ -47,3 +47,26 @@
 #11            1%            12,5%
 
 #O melhor jogador foi o número 9, com 4 votos, correspondendo a 50% dos votos.
+def vota_no_jogador 
+  puts "--------------VOTAÇÃO--------------"
+  puts "[Informe um valor entre 1 e 23]"
+  print "Qual nº de jogador você vai votar? "
+  numero = gets.to_i
+end
+
+def votacao_invalida? (numero)
+  numero < 1 or numero > 24
+end
+
+votacao = vota_no_jogador
+
+while votacao_invalida?(votacao) do
+  puts "----------------------------------"
+  puts "Não existe jogador com este número." 
+  puts "Por favor, digite um número válido."
+  puts "----------------------------------"
+
+  votacao = vota_no_jogador 
+end
+
+puts "Votação realizada com sucesso!"
