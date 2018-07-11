@@ -55,8 +55,14 @@ def vota_no_jogador
 end
 
 def votacao_invalida? (numero)
-  numero < 1 or numero > 24
+  numero > 24
 end
+
+def encerrar_votacao(numero)
+  numero == 0
+end
+
+#O porque do programa estar dando LOOP INFINITO no momento que digito ZERO?
 
 votacao = vota_no_jogador
 
@@ -69,4 +75,9 @@ while votacao_invalida?(votacao) do
   votacao = vota_no_jogador 
 end
 
+while encerrar_votacao(votacao)
+  puts "Votação encerrada!"
+end
+
 puts "Votação realizada com sucesso!"
+
