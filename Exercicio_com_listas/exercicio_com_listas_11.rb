@@ -1,25 +1,51 @@
 #Altere o programa anterior, intercalando 3 vetores de 10 elementos cada.
 
+def cria_vetor (quantidade_elementos)
+  vetor = []
 
-QUANTIDADE_DE_ELEMENTOS = 4
-vetor_01 = []
-vetor_02 = []
-vetor_03 = []
+  quantidade_elementos.times do |n|
+    puts "------------------"
+    puts "#{n+1}"
+    print "Digite o número: "
+    vetor << gets.to_i
+    
+  end
 
-QUANTIDADE_DE_ELEMENTOS.times do |n|
-  puts "------------------"
-  puts "#{n+1}"
-  print "Digite o primeiro número: "
-  vetor_01 << gets.to_i
-  print "Digite o segundo número: "
-  vetor_02 << gets.to_i
-  print "Digite o terceiro número: "
-  vetor_03 << gets.to_i
+  vetor
+
 end
+
+
+def intercala_vetor(quantidade_elementos, a, b, c)
+  vetor = []
+
+  quantidade_elementos.times do |index|
+    vetor << a[index]
+    vetor << b[index] 
+    vetor << c[index]
+  
+  end
+
+  vetor
+
+end
+
+
+QUANTIDADE_DE_ELEMENTOS = 2
+
+puts "Vetor 01:"
+vetor_01 = cria_vetor(QUANTIDADE_DE_ELEMENTOS)
+
+puts "Vetor 02"
+vetor_02 = cria_vetor(QUANTIDADE_DE_ELEMENTOS)
+
+puts "Vetor 03"
+vetor_03 = cria_vetor(QUANTIDADE_DE_ELEMENTOS)
 
 
 puts "#{vetor_01}"
 puts "#{vetor_02}"
 puts "#{vetor_03}"
 
-#COMO PEGAR ELEMENTOS INTERCALADOS DOS TRÊS VETORES E CRIAR UM VETOR MISTO ?
+vetor_intercalado = intercala_vetor(QUANTIDADE_DE_ELEMENTOS, vetor_01, vetor_02, vetor_03)
+puts "#{vetor_intercalado}"
