@@ -14,3 +14,30 @@
 #Atleta: Rodrigo Curvêllo
 #Saltos: 6.5 - 6.1 - 6.2 - 5.4 - 5.3
 #Média dos saltos: 5.9 m
+
+def recebe_distancia_dos_saltos(quantidade_de_saltos)
+  saltos = []
+
+  quantidade_de_saltos.times do |n|  
+    print "#{n + 1}º salto: "
+    saltos << gets.to_f
+  end 
+
+  saltos
+  
+end
+
+QUANTIDADE_DE_SALTOS = 5
+
+print "Atleta: "
+nome = gets
+
+distancia_dos_saltos = recebe_distancia_dos_saltos(QUANTIDADE_DE_SALTOS)
+media_dos_saltos = distancia_dos_saltos.sum/distancia_dos_saltos.size
+
+puts "-------------------------------"
+puts "Resultado Final"
+puts "-------------------------------"
+puts "Atleta: #{nome}"
+puts "Saltos: #{distancia_dos_saltos}"
+puts "Média dos saltos: #{media_dos_saltos} m"
