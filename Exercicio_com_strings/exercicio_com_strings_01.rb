@@ -10,3 +10,19 @@
 #Tamanho de "Brasil! Hexa 2006!": 18 caracteres
 #As duas strings são de tamanhos diferentes.
 #As duas strings possuem conteúdo diferente.
+
+print "Digite uma frase: "
+frase_01 = gets
+
+print "Digite outra frase: "
+frase_02 = gets
+
+puts "Tamanho de '#{frase_01}': #{frase_01.size} caracteres"
+puts "Tamanho de '#{frase_02}': #{frase_02.size} caracteres"
+
+if frase_01 == frase_02
+  puts "As duas strings possuem o mesmo conteúdo"
+else
+  puts "As duas strings possuem conteúdo diferente"
+end
+
