@@ -9,25 +9,26 @@
 #data = gets.chomp.split('/')
 
 meses = {
-  1 => "Janeiro"
-  2 => "Fevereiro"
-  3 => "Março"
-  4 => "Abril"
-  5 => "Maio"
-  6 => "Junho"
-  7 => "Julho"
-  8 => "Agosto"
-  9=> "Setemebro"
-  10 => "Outubro"
-  11 => "Novembro"
+  1 => "Janeiro",
+  2 => "Fevereiro",
+  3 => "Março",
+  4 => "Abril",
+  5 => "Maio",
+  6 => "Junho",
+  7 => "Julho",
+  8 => "Agosto",
+  9=> "Setemebro",
+  10 => "Outubro",
+  11 => "Novembro",
   12 => "Dezembro"
 }
 
 print "Digite o DIA do seu nascimento: "
-dia = gets
+dia = gets.chomp
 print "Digite o MÊS do seu nascimento: "
-mes = gets
+mes = gets.chomp
 print "Digite o ANO do seu nascimento: "
-ano = gets
+ano = gets.chomp
 
-puts "Você nasceu em #{dia} de #{} de #{ano}."
+puts "------------------------------------------------------"
+puts "Você nasceu em #{dia} de #{meses[mes.to_i]} de #{ano}."
