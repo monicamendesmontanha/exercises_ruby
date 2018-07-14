@@ -7,3 +7,8 @@
 #FULA
 #FULAN
 #FULANO
+
+print "Digite um nome: "
+nome = gets.chomp.split('')
+
+puts nome
