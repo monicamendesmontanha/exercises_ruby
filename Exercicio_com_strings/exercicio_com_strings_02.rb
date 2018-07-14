@@ -2,3 +2,8 @@
 #digitar o seu nome e em seguida mostre o nome do usuário de trás para frente
 #utilizando somente letras maiúsculas. Dica: lembre−se que ao informar o nome o
 #usuário pode digitar letras maiúsculas ou minúsculas.
+
+print "Digite o seu nome: "
+nome = gets
+
+puts "#{nome.reverse.upcase}"
