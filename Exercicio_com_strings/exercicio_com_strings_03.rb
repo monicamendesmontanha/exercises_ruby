@@ -6,3 +6,8 @@
 #  A
 #  N
 #  O
+
+print "Digite um nome: "
+nome = gets.chomp.split('')
+
+puts nome
