@@ -3,3 +3,31 @@
 
 #Data de Nascimento: 29/10/1973
 #Você nasceu em 29 de Outubro de 1973.
+
+
+#print "Digite sua data de nascimento: [dd/mm/aaaa]"
+#data = gets.chomp.split('/')
+
+meses = {
+  1 => "Janeiro"
+  2 => "Fevereiro"
+  3 => "Março"
+  4 => "Abril"
+  5 => "Maio"
+  6 => "Junho"
+  7 => "Julho"
+  8 => "Agosto"
+  9=> "Setemebro"
+  10 => "Outubro"
+  11 => "Novembro"
+  12 => "Dezembro"
+}
+
+print "Digite o DIA do seu nascimento: "
+dia = gets
+print "Digite o MÊS do seu nascimento: "
+mes = gets
+print "Digite o ANO do seu nascimento: "
+ano = gets
+
+puts "Você nasceu em #{dia} de #{} de #{ano}."
