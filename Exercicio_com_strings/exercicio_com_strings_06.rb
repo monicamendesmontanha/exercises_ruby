@@ -23,12 +23,12 @@ meses = {
   12 => "Dezembro"
 }
 
-print "Digite o DIA do seu nascimento: "
-dia = gets.chomp
-print "Digite o MÊS do seu nascimento: "
-mes = gets.chomp
-print "Digite o ANO do seu nascimento: "
-ano = gets.chomp
+print "Digite a data do seu nascimento:  [dd/mm/aaaa] "
+data = gets.chomp.split('/')
+
+dia = data[0]
+mes = data[1]
+ano = data[2]
 
 puts "------------------------------------------------------"
 puts "Você nasceu em #{dia} de #{meses[mes.to_i]} de #{ano}."
