@@ -26,9 +26,9 @@ meses = {
 print "Digite a data do seu nascimento:  [dd/mm/aaaa] "
 data = gets.chomp.split('/')
 
-dia = data[0]
-mes = data[1]
-ano = data[2]
+dia = data[0].to_i
+mes = data[1].to_i
+ano = data[2].to_i
 
 puts "------------------------------------------------------"
-puts "Você nasceu em #{dia} de #{meses[mes.to_i]} de #{ano}."
+puts "Você nasceu em #{dia} de #{meses[mes]} de #{ano}."
