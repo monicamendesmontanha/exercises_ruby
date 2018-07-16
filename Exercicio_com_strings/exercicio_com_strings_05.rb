@@ -9,10 +9,13 @@
 #F
 
 print "Digite um nome: "
-nome = gets.chomp.split('')
+letras = gets.chomp.split('')
 
-resultado = nome
-nome.each do |c|
-  resultado = resultado - c
+quantidade = letras.size
+resultado = ""
+letras.each do |letra|
+  resultado = letras.take(quantidade).join
+  quantidade = quantidade - 1
+
   puts resultado
 end
