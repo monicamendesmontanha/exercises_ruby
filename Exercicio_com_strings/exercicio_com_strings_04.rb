@@ -11,4 +11,8 @@
 print "Digite um nome: "
 nome = gets.chomp.split('')
 
-puts nome
+resultado = ""
+nome.each do |c|
+  resultado = resultado + c
+  puts resultado
+end
