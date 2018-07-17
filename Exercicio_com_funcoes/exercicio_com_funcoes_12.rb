@@ -4,3 +4,10 @@
 #outra combinação possível, de forma aleatória. Padronize em sua função que
 #todos os caracteres serão devolvidos em caixa alta ou caixa baixa,
 #independentemente de como foram digitados.
+
+
+print "Digite uma palavra qualquer: "
+letras = gets.chomp
+
+embaralha_letras = letras.
+
