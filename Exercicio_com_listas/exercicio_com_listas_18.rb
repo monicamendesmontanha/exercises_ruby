@@ -46,6 +46,37 @@
 #10            3%            37,5%
 #11            1%            12,5%
 
+#O melhor jogador foi o número 9, com 4 votos, correspondendo a 50% dos votos.
+
+class Votacao
+  def initialize(candidatos)
+    @candidatos = candidatos
+  end
+
+  def computa_voto(voto)
+    @candidatos[voto] << 1
+  end
+
+  def contabiliza_total_de_votos
+    total_votos = 0
+    @candidatos.each do |numero, votos|
+      total_votos = total_votos + votos.size
+    end
+
+    total_votos
+  end
+
+  def contabiliza_votos_por_candidato
+    votos_por_candidato = {}
+
+    @candidatos.each do |numero, votos|
+      votos_por_candidato[numero] = votos.size
+    end
+
+    votos_por_candidato.select { |numero, total_votos| total_votos > 0 }
+  end
+end
+
 jogadores = {
   1 => [],
   2 => [],
@@ -72,36 +103,8 @@ jogadores = {
   23 => []
 }
 
-def total_de_votos_computados(jogadores)
-  total_votos = 0
-  jogadores.each do |numero, votos|
-    total_votos = total_votos + votos.size
-  end
+votacao = Votacao.new(jogadores)
 
-  total_votos
-end
-
-def numeros_e_respectivos_votos_de_todos_os_jogadores_que_receberam_votos(jogadores)
-  votacao_customizada = {}
-
-  jogadores.each do |numero, votos|
-    if votos.size > 0
-      votacao_customizada[numero] = votos.size
-    end
-  end
-
-  votacao_customizada
-end
-
-def percentual_de_votos_de_cada_um_destes_jogadores(votacao)
-  puts "PENDENTE"
-end
-
-def numero_do_jogador_escolhido_como_o_melhor_jogador_da_partida_juntamente_com_o_numero_de_votos_e_o_percentual_de_votos_dados_a_ele(votacao)
-  puts "PENDENTE"
-end
-
-#O melhor jogador foi o número 9, com 4 votos, correspondendo a 50% dos votos.
 def vota_no_jogador
   puts "--------------VOTAÇÃO--------------"
   puts "[Informe um valor entre 1 e 23]"
@@ -130,26 +133,26 @@ def votacao_em_andamento?(numero)
 end
 
 numero_votado = vota_no_jogador
-jogadores[numero_votado] << 1
+votacao.computa_voto(numero_votado)
 
 while votacao_em_andamento?(numero_votado) do
   numero_votado = vota_no_jogador
 
   if numero_votado != 0
-    jogadores[numero_votado] << 1
+    votacao.computa_voto(numero_votado)
   end
 end
 
 puts "Votação realizada com sucesso!"
 
-puts "a. #{total_de_votos_computados(jogadores)}"
+puts "a. #{votacao.contabiliza_total_de_votos}"
 
-resposta_b = numeros_e_respectivos_votos_de_todos_os_jogadores_que_receberam_votos(jogadores)
+resposta_b = votacao.contabiliza_votos_por_candidato
 
 puts "b."
 resposta_b.each do |numero, total_votos|
   puts "O jogador de número #{numero} recebeu #{total_votos}."
 end
 
-puts "c. #{percentual_de_votos_de_cada_um_destes_jogadores(jogadores)}"
-puts "d. #{numero_do_jogador_escolhido_como_o_melhor_jogador_da_partida_juntamente_com_o_numero_de_votos_e_o_percentual_de_votos_dados_a_ele(jogadores)}"
+# puts "c. #{percentual_de_votos_de_cada_um_destes_jogadores(jogadores)}"
+# puts "d. #{numero_do_jogador_escolhido_como_o_melhor_jogador_da_partida_juntamente_com_o_numero_de_votos_e_o_percentual_de_votos_dados_a_ele(jogadores)}"
