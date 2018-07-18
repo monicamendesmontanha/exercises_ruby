@@ -4,7 +4,15 @@
 
 
 def dia_valido(dia)
-  dia > 1 or dia <= 31
+  return nil if dia.size < 2
+  
+  if dia.to_i >= 1 && dia.to_i <= 9
+    return nil if dia[0] != '0'
+  end
+
+  return nil if dia < 1 or dia > 31
+  
+  dia
 end
 
 
@@ -30,4 +38,8 @@ dia = dia_valido(data[0])
 mes = data[1].to_i
 ano = data[2]
 
-puts "#{dia} de #{meses[mes]} de #{ano}"
+if dia
+  puts "#{dia} de #{meses[mes]} de #{ano}"
+else
+  puts "Dia invalido"
+end
