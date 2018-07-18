@@ -10,3 +10,17 @@
 #A palavra é: _ E _ _ O
 #Digite uma letra: S
 #-> Você errou pela 2a vez. Tente de novo!
+
+PALAVRA = "SUCO"
+
+puts "JOGO DA FORCA"
+puts "-------------"
+print "Digite uma letra: "
+letra = gets
+
+
+resultado = ""
+PALAVRA.each do |c|
+  resultado = resultado + c
+  puts resultado
+end
