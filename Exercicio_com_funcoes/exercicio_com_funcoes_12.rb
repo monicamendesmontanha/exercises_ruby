@@ -9,5 +9,7 @@
 print "Digite uma palavra qualquer: "
 letras = gets.chomp
 
-embaralha_letras = letras.
+letras_embaralhadas = letras.split('').shuffle.join
 
+puts "Original: #{letras}"
+puts "Embaralhadas: #{letras_embaralhadas}"
