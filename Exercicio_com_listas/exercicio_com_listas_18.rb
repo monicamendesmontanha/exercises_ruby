@@ -46,8 +46,39 @@
 #10            3%            37,5%
 #11            1%            12,5%
 
-def total_de_votos_computados(votacao)
-  votacao.size
+jogadores = {
+  1 => [],
+  2 => [],
+  3 => [],
+  4 => [],
+  5 => [],
+  6 => [],
+  7 => [],
+  8 => [],
+  9 => [],
+  10 => [],
+  11 => [],
+  12 => [],
+  13 => [],
+  14 => [],
+  15 => [],
+  16 => [],
+  17 => [],
+  18 => [],
+  19 => [],
+  20 => [],
+  21 => [],
+  22 => [],
+  23 => []
+}
+
+def total_de_votos_computados(jogadores)
+  total_votos = 0
+  jogadores.each do |numero, votos|
+    total_votos = total_votos + votos.size
+  end
+
+  total_votos
 end
 
 def numeros_e_respectivos_votos_de_todos_os_jogadores_que_receberam_votos(jogadores)
@@ -69,33 +100,6 @@ end
 def numero_do_jogador_escolhido_como_o_melhor_jogador_da_partida_juntamente_com_o_numero_de_votos_e_o_percentual_de_votos_dados_a_ele(votacao)
   puts "PENDENTE"
 end
-
-jogadores = {
-  1 => [],
-  2 => [],
-  3 => [],
-  4 => [],
-  5 => [],
-  6 => [],
-  7 => [],
-  8 => [],
-  9 => [],
-  10 => [],
-  11 => [],
-  12 => [],
-  13 => [],
-  14 => [],
-  15 => [],
-  16 => [],
-  16 => [],
-  17 => [],
-  18 => [],
-  19 => [],
-  20 => [],
-  21 => [],
-  22 => [],
-  23 => []
-}
 
 #O melhor jogador foi o número 9, com 4 votos, correspondendo a 50% dos votos.
 def vota_no_jogador
@@ -125,25 +129,20 @@ def votacao_em_andamento?(numero)
   numero != 0
 end
 
-votacao = []
 numero_votado = vota_no_jogador
-votacao << numero_votado
 jogadores[numero_votado] << 1
 
 while votacao_em_andamento?(numero_votado) do
   numero_votado = vota_no_jogador
 
   if numero_votado != 0
-    votacao << numero_votado
     jogadores[numero_votado] << 1
   end
 end
 
-votacao_encerrada = votacao.reject { |n| n == 0 }
-
 puts "Votação realizada com sucesso!"
 
-puts "a. #{total_de_votos_computados(votacao_encerrada)}"
+puts "a. #{total_de_votos_computados(jogadores)}"
 
 resposta_b = numeros_e_respectivos_votos_de_todos_os_jogadores_que_receberam_votos(jogadores)
 
@@ -152,5 +151,5 @@ resposta_b.each do |numero, total_votos|
   puts "O jogador de número #{numero} recebeu #{total_votos}."
 end
 
-puts "c. #{percentual_de_votos_de_cada_um_destes_jogadores(votacao_encerrada)}"
-puts "d. #{numero_do_jogador_escolhido_como_o_melhor_jogador_da_partida_juntamente_com_o_numero_de_votos_e_o_percentual_de_votos_dados_a_ele(votacao_encerrada)}"
+puts "c. #{percentual_de_votos_de_cada_um_destes_jogadores(jogadores)}"
+puts "d. #{numero_do_jogador_escolhido_como_o_melhor_jogador_da_partida_juntamente_com_o_numero_de_votos_e_o_percentual_de_votos_dados_a_ele(jogadores)}"
