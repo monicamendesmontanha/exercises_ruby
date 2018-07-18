@@ -11,9 +11,23 @@ def dia_valido(dia)
   end
 
   return nil if dia < 1 or dia > 31
-  
+
   dia
 end
+
+
+#def mes_valido(mes)
+#  return nil if mes.size < 2
+
+#  if mes.to_i >=1 && dia.to_i <= 12
+#    return nil if mes[0] != '0'
+#  end
+
+#  return nil if mes < 1 or mes > 12
+
+#  mes
+
+#end
 
 
 meses = {
@@ -25,7 +39,7 @@ meses = {
   6 => "Junho",
   7 => "Julho",
   8 => "Agosto",
-  9 => "Setemebro",
+  9 => "Setembro",
   10 => "Outubro",
   11 => "Novembro",
   12 => "Dezembro"
