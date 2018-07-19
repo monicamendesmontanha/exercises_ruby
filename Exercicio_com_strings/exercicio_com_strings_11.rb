@@ -15,7 +15,8 @@ novo_jogo = "s"
 
 while novo_jogo == "s"
 
-  palavras = ["gato", "cachorro", "cavalo"]
+  #palavras = ["gato", "cachorro", "cavalo"]
+  palavras = %w{gato cachorro cavalo}
   palavra_sorteada = palavras.sample
   tamanho_da_palavra = palavra_sorteada.size
 
@@ -60,4 +61,3 @@ while novo_jogo == "s"
 end
 
 puts "Jogo encerrado!"
-
