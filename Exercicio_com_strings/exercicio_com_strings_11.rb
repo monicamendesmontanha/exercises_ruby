@@ -11,16 +11,53 @@
 #Digite uma letra: S
 #-> Você errou pela 2a vez. Tente de novo!
 
-PALAVRA = "SUCO"
+novo_jogo = "s"
 
-puts "JOGO DA FORCA"
-puts "-------------"
-print "Digite uma letra: "
-letra = gets
+while novo_jogo == "s"
 
+  palavras = ["gato", "cachorro", "cavalo"]
+  palavra_sorteada = palavras.sample
+  tamanho_da_palavra = palavra_sorteada.size
 
-resultado = ""
-PALAVRA.each do |c|
-  resultado = resultado + c
-  puts resultado
+  puts "JOGO DA FORCA"
+  puts "-------------"
+  palavra_parcial = []
+
+  tamanho_da_palavra.times do 
+    palavra_parcial << " _ "
+  end
+
+  puts "A palavra é: '#{palavra_parcial.join}'"
+
+  fim = false
+  while fim == false
+    print "Digite uma letra: "
+    letra = gets.chomp
+
+    contador = 0
+    palavra_sorteada.each_char do |l|
+      if palavra_parcial[contador] == " _ "
+        if l == letra
+        palavra_parcial[contador] = letra
+        end
+      end
+
+      contador += 1
+    end
+
+    if palavra_parcial.join.count(" _ ") > 0
+      fim = false
+      puts "#{palavra_parcial.join}"
+    else
+      fim = true
+    end
+
+  end
+  
+  puts "A palavra correta era: #{palavra_parcial.join}"
+  puts "Gostaria de jogar novamente? [s/n]"
+  novo_jogo = gets.chomp
 end
+
+puts "Jogo encerrado!"
+
