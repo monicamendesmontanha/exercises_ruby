@@ -24,7 +24,7 @@ while novo_jogo == "s"
   puts "-------------"
   palavra_parcial = []
 
-  tamanho_da_palavra.times do 
+  tamanho_da_palavra.times do
     palavra_parcial << " _ "
   end
 
@@ -54,7 +54,7 @@ while novo_jogo == "s"
     end
 
   end
-  
+
   puts "A palavra correta era: #{palavra_parcial.join}"
   puts "Gostaria de jogar novamente? [s/n]"
   novo_jogo = gets.chomp
