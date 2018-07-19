@@ -49,17 +49,22 @@
 #O melhor jogador foi o número 9, com 4 votos, correspondendo a 50% dos votos.
 
 class Votacao
+  # atributos
+  attr_reader :candidatos
+
+  # construtor
   def initialize(candidatos)
     @candidatos = candidatos
   end
 
+  # métodos (comportamentos)
   def computa_voto(voto)
-    @candidatos[voto] << 1
+    candidatos[voto] << 1
   end
 
   def contabiliza_total_de_votos
     total_votos = 0
-    @candidatos.each do |numero, votos|
+    candidatos.each do |numero, votos|
       total_votos = total_votos + votos.size
     end
 
@@ -69,11 +74,60 @@ class Votacao
   def contabiliza_votos_por_candidato
     votos_por_candidato = {}
 
-    @candidatos.each do |numero, votos|
+    candidatos.each do |numero, votos|
       votos_por_candidato[numero] = votos.size
     end
 
     votos_por_candidato.select { |numero, total_votos| total_votos > 0 }
+  end
+end
+
+class VotacaoJogador < Votacao
+  def computa_voto
+    # solicita voto do usuário na primeira execução
+    voto = solicita_voto_usuario
+
+    # verifica se a votação ainda está em andamento (se voto não for 0)
+    while votacao_em_andamento?(voto) do
+
+      # verifica se a votação é válida (se voto está entre 1 e 23)
+      while votacao_invalida?(voto) do
+        puts "----------------------------------"
+        puts "Não existe jogador com este número."
+        puts "Por favor, digite um número válido."
+        puts "----------------------------------"
+
+        # solicita voto do usuário até ser válido
+        voto = solicita_voto_usuario
+      end
+
+      # Chama o pai – Votacao – para chamar 'computa_voto' passando 'voto' como argumento
+      # Essa chamada vai chamar 'computaVoto' do pai, que adiciona de fato o voto.
+      super(voto)
+
+      # solicita voto do usuário mais uma vez
+      voto = solicita_voto_usuario
+    end
+  end
+
+  private
+
+  def solicita_voto_usuario
+    puts "--------------VOTAÇÃO--------------"
+    puts "[Informe um valor entre 1 e 23]"
+    print "Qual nº de jogador você vai votar? "
+
+    voto = gets.to_i
+
+    voto
+  end
+
+  def votacao_em_andamento?(numero)
+    numero != 0
+  end
+
+  def votacao_invalida?(numero)
+    numero < 0 || numero > 23
   end
 end
 
@@ -103,45 +157,8 @@ jogadores = {
   23 => []
 }
 
-votacao = Votacao.new(jogadores)
-
-def vota_no_jogador
-  puts "--------------VOTAÇÃO--------------"
-  puts "[Informe um valor entre 1 e 23]"
-  print "Qual nº de jogador você vai votar? "
-
-  voto = gets.to_i
-
-  while votacao_invalida?(voto) do
-    puts "----------------------------------"
-    puts "Não existe jogador com este número."
-    puts "Por favor, digite um número válido."
-    puts "----------------------------------"
-
-    voto = vota_no_jogador
-  end
-
-  voto
-end
-
-def votacao_invalida? (numero)
-  numero < 0 || numero > 23
-end
-
-def votacao_em_andamento?(numero)
-  numero != 0
-end
-
-numero_votado = vota_no_jogador
-votacao.computa_voto(numero_votado)
-
-while votacao_em_andamento?(numero_votado) do
-  numero_votado = vota_no_jogador
-
-  if numero_votado != 0
-    votacao.computa_voto(numero_votado)
-  end
-end
+votacao = VotacaoJogador.new(jogadores)
+votacao.computa_voto()
 
 puts "Votação realizada com sucesso!"
 
@@ -151,7 +168,7 @@ resposta_b = votacao.contabiliza_votos_por_candidato
 
 puts "b."
 resposta_b.each do |numero, total_votos|
-  puts "O jogador de número #{numero} recebeu #{total_votos}."
+  puts "   O jogador de número #{numero} recebeu #{total_votos}."
 end
 
 # puts "c. #{percentual_de_votos_de_cada_um_destes_jogadores(jogadores)}"
