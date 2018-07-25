@@ -115,6 +115,7 @@ class VotacaoJogador < Votacao
   def solicita_voto_usuario
     puts "--------------VOTAÇÃO--------------"
     puts "[Informe um valor entre 1 e 23]"
+    puts ">>   Digite 0 para sair"
     print "Qual nº de jogador você vai votar? "
 
     voto = gets.to_i
@@ -168,7 +169,7 @@ resposta_b = votacao.contabiliza_votos_por_candidato
 
 puts "b."
 resposta_b.each do |numero, total_votos|
-  puts "   O jogador de número #{numero} recebeu #{total_votos}."
+  puts "   O jogador de número #{numero} recebeu #{total_votos} voto(s)."
 end
 
 # puts "c. #{percentual_de_votos_de_cada_um_destes_jogadores(jogadores)}"
