@@ -124,7 +124,8 @@ puts "----------------------------------------"
 puts "O total de respostas foram: #{total_respostas}"
 
 respostas_por_sistema = contabiliza_respostas_por_sistema(sistemas)
-puts "#{respostas_por_sistema}"
+puts "----------------------------------------"
+puts "Nº de respostas por sistema: #{respostas_por_sistema}"
 
 percentual = define_percentual_das_respostas(sistemas)
 puts "----------------------------------------"
