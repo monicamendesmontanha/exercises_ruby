@@ -31,13 +31,103 @@
 #O Sistema Operacional mais votado foi o Unix, com 3500 votos, correspondendo a 40% dos votos.
 
 sistemas = {
-  1 => "Windows Server",
-  2 => "Unix",
-  3 => "Linux",
-  4 => "Netware",
-  5 => "Mac OS",
-  6 => "Outro"
+  1 => {
+    sistema: "Windows Server",
+    respostas: []
+  },
+  2 => {
+    sistema: "Unix",
+    respostas: []
+  },
+  3 => {
+    sistema: "Linux",
+    respostas: []
+  },
+  4 => {
+    sistema: "Netware",
+    respostas: []
+  },
+  5 => {
+    sistema: "Mac OS",
+    respostas: []
+  },
+  6 => {
+    sistema: "Outro",
+    respostas: []
+  }
 }
 
-print "Qual o melhor Sistema Operacional para uso em servidores? "
-resposta = gets
+def computa_resposta(sistemas, valor_digitado)
+  opcao = sistemas[valor_digitado]
+  # verifica se opçâo existe
+  if opcao
+    opcao[:respostas] << 1
+  end
+end
+
+def contabiliza_total_respostas(sistemas)
+  total_de_respostas = 0
+  sistemas.each do |chave, valor|
+    total_de_respostas += valor[:respostas].size
+  end
+
+  total_de_respostas
+end
+
+def contabiliza_respostas_por_sistema(sistemas)
+  respostas_por_sistema = {}
+
+  sistemas.each do |chave, valor|
+    sistema = valor[:sistema]
+    respostas_por_sistema[sistema] = valor[:respostas].size
+  end
+
+  respostas_por_sistema.select { |chave, total_de_respostas| total_de_respostas > 0}
+end
+
+def define_percentual_das_respostas(sistemas)
+  respostas_por_sistema = {}
+
+  sistemas.each do |chave, valor|
+    sistema = valor[:sistema]
+    total = valor[:respostas].size
+
+    percentual = total.to_f / contabiliza_total_respostas(sistemas).to_f * 100
+
+    respostas_por_sistema[sistema] = percentual
+  end
+
+  respostas_por_sistema
+end
+
+
+def enquete_em_andamento?(resposta)
+  resposta != 0
+end
+
+def solicita_resposta_do_usuario
+  puts "Digite o sistema em que você quer votar: "
+  resposta = gets.to_i
+  resposta
+end
+
+resposta = solicita_resposta_do_usuario
+computa_resposta(sistemas, resposta)
+
+while enquete_em_andamento?(resposta)
+  resposta = solicita_resposta_do_usuario
+  computa_resposta(sistemas, resposta)
+end
+
+total_respostas = contabiliza_total_respostas(sistemas)
+puts "----------------------------------------"
+puts "O total de respostas foram: #{total_respostas}"
+
+respostas_por_sistema = contabiliza_respostas_por_sistema(sistemas)
+puts "#{respostas_por_sistema}"
+
+percentual = define_percentual_das_respostas(sistemas)
+puts "----------------------------------------"
+percentual.each do |chave, valor|
+  puts "#{chave} ~> #{valor.round(2)} %"
+end
