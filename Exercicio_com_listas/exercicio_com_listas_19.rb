@@ -30,74 +30,55 @@
 
 #O Sistema Operacional mais votado foi o Unix, com 3500 votos, correspondendo a 40% dos votos.
 
-sistemas = {
-  1 => {
-    sistema: "Windows Server",
-    respostas: []
-  },
-  2 => {
-    sistema: "Unix",
-    respostas: []
-  },
-  3 => {
-    sistema: "Linux",
-    respostas: []
-  },
-  4 => {
-    sistema: "Netware",
-    respostas: []
-  },
-  5 => {
-    sistema: "Mac OS",
-    respostas: []
-  },
-  6 => {
-    sistema: "Outro",
-    respostas: []
-  }
-}
+class Enquete
 
-def computa_resposta(sistemas, valor_digitado)
-  opcao = sistemas[valor_digitado]
-  # verifica se opçâo existe
-  if opcao
-    opcao[:respostas] << 1
-  end
-end
-
-def contabiliza_total_respostas(sistemas)
-  total_de_respostas = 0
-  sistemas.each do |chave, valor|
-    total_de_respostas += valor[:respostas].size
+  def initialize(opcoes)
+    @opcoes = opcoes
   end
 
-  total_de_respostas
-end
-
-def contabiliza_respostas_por_sistema(sistemas)
-  respostas_por_sistema = {}
-
-  sistemas.each do |chave, valor|
-    sistema = valor[:sistema]
-    respostas_por_sistema[sistema] = valor[:respostas].size
+  def computa_resposta(valor_digitado)
+    opcao = @opcoes[valor_digitado]
+    # verifica se opçâo existe
+    if opcao
+      opcao[:respostas] << 1
+    end
   end
 
-  respostas_por_sistema.select { |chave, total_de_respostas| total_de_respostas > 0}
-end
-
-def define_percentual_das_respostas(sistemas)
-  respostas_por_sistema = {}
-
-  sistemas.each do |chave, valor|
-    sistema = valor[:sistema]
-    total = valor[:respostas].size
-
-    percentual = total.to_f / contabiliza_total_respostas(sistemas).to_f * 100
-
-    respostas_por_sistema[sistema] = percentual
+  def contabiliza_total_respostas
+    total_de_respostas = 0
+    @opcoes.each do |chave, valor|
+      total_de_respostas += valor[:respostas].size
+    end
+  
+    total_de_respostas
+  end
+  
+  def contabiliza_respostas_por_opcao
+    respostas_por_opcao = {}
+  
+    @opcoes.each do |chave, valor|
+      nome = valor[:nome]
+      respostas_por_opcao[nome] = valor[:respostas].size
+    end
+  
+    respostas_por_opcao
   end
 
-  respostas_por_sistema
+  def define_percentual_das_respostas
+    respostas_por_opcao = {}
+
+    @opcoes.each do |chave, valor|
+      nome = valor[:nome]
+      total = valor[:respostas].size
+
+      percentual = total.to_f / contabiliza_total_respostas.to_f * 100
+
+      respostas_por_opcao[nome] = percentual
+    end
+
+    respostas_por_opcao
+  end
+
 end
 
 
@@ -111,24 +92,56 @@ def solicita_resposta_do_usuario
   resposta
 end
 
+sistemas = {
+  1 => {
+    nome: "Windows Server",
+    respostas: []
+  },
+  2 => {
+    nome: "Unix",
+    respostas: []
+  },
+  3 => {
+    nome: "Linux",
+    respostas: []
+  },
+  4 => {
+    nome: "Netware",
+    respostas: []
+  },
+  5 => {
+    nome: "Mac OS",
+    respostas: []
+  },
+  6 => {
+    nome: "Outro",
+    respostas: []
+  }
+}
+
 resposta = solicita_resposta_do_usuario
-computa_resposta(sistemas, resposta)
+enquete = Enquete.new(sistemas)
+enquete.computa_resposta(resposta)
 
 while enquete_em_andamento?(resposta)
   resposta = solicita_resposta_do_usuario
-  computa_resposta(sistemas, resposta)
+  enquete.computa_resposta(resposta)
 end
 
-total_respostas = contabiliza_total_respostas(sistemas)
+total_respostas = enquete.contabiliza_total_respostas
 puts "----------------------------------------"
 puts "O total de respostas foram: #{total_respostas}"
 
-respostas_por_sistema = contabiliza_respostas_por_sistema(sistemas)
+respostas_por_sistema = enquete.contabiliza_respostas_por_opcao
 puts "----------------------------------------"
-puts "Nº de respostas por sistema: #{respostas_por_sistema}"
+puts "Nº de respostas por sistema: "
+respostas_por_sistema.each do |chave, valor|
+  puts "#{chave} ~> #{valor}"
+end
 
-percentual = define_percentual_das_respostas(sistemas)
+percentual = enquete.define_percentual_das_respostas
 puts "----------------------------------------"
+puts "Percentual de respostas por sistema: "
 percentual.each do |chave, valor|
   puts "#{chave} ~> #{valor.round(2)} %"
 end
