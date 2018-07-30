@@ -181,4 +181,5 @@ respostas.each do |chave, valor|
 end
 
 mais_votos = enquete.obtem_resposta_com_maior_numero_de_votos
+puts "----------------------------------------"
 puts "O Sistema Operacional mais votado foi o #{mais_votos[:nome]}, com #{mais_votos[:total_votos]} votos, correspondendo a #{mais_votos[:percentual].round(2)}% dos votos."
