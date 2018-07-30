@@ -48,89 +48,7 @@
 
 #O melhor jogador foi o número 9, com 4 votos, correspondendo a 50% dos votos.
 
-class Votacao
-  # atributos
-  attr_reader :candidatos
-
-  # construtor
-  def initialize(candidatos)
-    @candidatos = candidatos
-  end
-
-  # métodos (comportamentos)
-  def computa_voto(voto)
-    candidatos[voto] << 1
-  end
-
-  def contabiliza_total_de_votos
-    total_votos = 0
-    candidatos.each do |numero, votos|
-      total_votos = total_votos + votos.size
-    end
-
-    total_votos
-  end
-
-  def contabiliza_votos_por_candidato
-    votos_por_candidato = {}
-
-    candidatos.each do |numero, votos|
-      votos_por_candidato[numero] = votos.size
-    end
-
-    votos_por_candidato.select { |numero, total_votos| total_votos > 0 }
-  end
-end
-
-class VotacaoJogador < Votacao
-  def computa_voto
-    # solicita voto do usuário na primeira execução
-    voto = solicita_voto_usuario
-
-    # verifica se a votação ainda está em andamento (se voto não for 0)
-    while votacao_em_andamento?(voto) do
-
-      # verifica se a votação é válida (se voto está entre 1 e 23)
-      while votacao_invalida?(voto) do
-        puts "----------------------------------"
-        puts "Não existe jogador com este número."
-        puts "Por favor, digite um número válido."
-        puts "----------------------------------"
-
-        # solicita voto do usuário até ser válido
-        voto = solicita_voto_usuario
-      end
-
-      # Chama o pai – Votacao – para chamar 'computa_voto' passando 'voto' como argumento
-      # Essa chamada vai chamar 'computaVoto' do pai, que adiciona de fato o voto.
-      super(voto)
-
-      # solicita voto do usuário mais uma vez
-      voto = solicita_voto_usuario
-    end
-  end
-
-  private
-
-  def solicita_voto_usuario
-    puts "--------------VOTAÇÃO--------------"
-    puts "[Informe um valor entre 1 e 23]"
-    puts ">>   Digite 0 para sair"
-    print "Qual nº de jogador você vai votar? "
-
-    voto = gets.to_i
-
-    voto
-  end
-
-  def votacao_em_andamento?(numero)
-    numero != 0
-  end
-
-  def votacao_invalida?(numero)
-    numero < 0 || numero > 23
-  end
-end
+require_relative './votacao_jogador'
 
 jogadores = {
   1 => [],
@@ -172,5 +90,14 @@ resposta_b.each do |numero, total_votos|
   puts "   O jogador de número #{numero} recebeu #{total_votos} voto(s)."
 end
 
-# puts "c. #{percentual_de_votos_de_cada_um_destes_jogadores(jogadores)}"
-# puts "d. #{numero_do_jogador_escolhido_como_o_melhor_jogador_da_partida_juntamente_com_o_numero_de_votos_e_o_percentual_de_votos_dados_a_ele(jogadores)}"
+resposta_c = votacao.contabiliza_percentual_por_candidato
+
+puts "c."
+resposta_c.each do |numero, percentual|
+  puts "   O jogador de número #{numero} recebeu #{percentual} % de voto(s)."
+end
+
+resposta_d = votacao.candidato_mais_votado
+
+puts "d. "
+puts "O melhor jogador foi o número #{resposta_d[:numero]}, com #{resposta_d[:total_votos]} voto(s), correspondendo a #{resposta_d[:percentual]} % de votos."
