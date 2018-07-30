@@ -52,19 +52,8 @@ class Enquete
   
     total_de_respostas
   end
-  
-  def contabiliza_respostas_por_opcao
-    respostas_por_opcao = {}
-  
-    @opcoes.each do |chave, valor|
-      nome = valor[:nome]
-      respostas_por_opcao[nome] = valor[:respostas].size
-    end
-  
-    respostas_por_opcao
-  end
 
-  def define_percentual_das_respostas
+  def obtem_respostas_por_voto_e_percentual
     respostas_por_opcao = {}
 
     @opcoes.each do |chave, valor|
@@ -73,12 +62,29 @@ class Enquete
 
       percentual = total.to_f / contabiliza_total_respostas.to_f * 100
 
-      respostas_por_opcao[nome] = percentual
+      respostas_por_opcao[nome] = {
+        percentual: percentual,
+        total_votos: total
+      }
     end
 
     respostas_por_opcao
   end
 
+  def obtem_resposta_com_maior_numero_de_votos
+    opcoes = []
+    obtem_respostas_por_voto_e_percentual.each do |chave, valor|
+      opcao_customizada = {
+        nome: chave,
+        total_votos: valor[:total_votos],
+        percentual: valor[:percentual]
+      }
+
+      opcoes << opcao_customizada
+    end
+
+    opcoes.max_by { |opcao| opcao[:total_votos] }
+  end
 end
 
 
@@ -132,16 +138,47 @@ total_respostas = enquete.contabiliza_total_respostas
 puts "----------------------------------------"
 puts "O total de respostas foram: #{total_respostas}"
 
-respostas_por_sistema = enquete.contabiliza_respostas_por_opcao
+respostas = enquete.obtem_respostas_por_voto_e_percentual
+
+#respostas:
+# {
+#   "Windows Server" => {
+#    :percentual => 50.0, 
+#    :total_votos => 3
+#   }, 
+#   "Unix" => {
+#     :percentual => 16.666666666666664, 
+#     :total_votos => 1 
+#   }, 
+#   "Linux" => {
+#     :percentual => 33.33333333333333, 
+#     :total_votos => 2
+#     }, 
+#     "Netware" => {
+#       :percentual => 0.0, 
+#       :total_votos => 0
+#     }, 
+#     "Mac OS" => {
+#       :percentual => 0.0, 
+#       :total_votos => 0
+#     }, 
+#     "Outro" => {
+#       :percentual => 0.0, 
+#       :total_votos => 0
+#     }
+# }
+
 puts "----------------------------------------"
 puts "Nº de respostas por sistema: "
-respostas_por_sistema.each do |chave, valor|
-  puts "#{chave} ~> #{valor}"
+respostas.each do |chave, valor|
+  puts "#{chave} ~> #{valor[:total_votos]}"
 end
 
-percentual = enquete.define_percentual_das_respostas
 puts "----------------------------------------"
 puts "Percentual de respostas por sistema: "
-percentual.each do |chave, valor|
-  puts "#{chave} ~> #{valor.round(2)} %"
+respostas.each do |chave, valor|
+  puts "#{chave} ~> #{valor[:percentual].round(2)} %"
 end
+
+mais_votos = enquete.obtem_resposta_com_maior_numero_de_votos
+puts "O Sistema Operacional mais votado foi o #{mais_votos[:nome]}, com #{mais_votos[:total_votos]} votos, correspondendo a #{mais_votos[:percentual].round(2)}% dos votos."
