@@ -31,8 +31,8 @@ def solicita_tipo_de_defeito
   puts "c. necessita troca do cabo ou conector;"
   puts "d. quebrado ou inutilizado"
   print " => Identifique o tipo de defeito encontrado no mouse: "
-  tipo = gets
-
+  tipo = gets.chomp
+  
 end 
 
   # "a": {
@@ -56,13 +56,12 @@ end
   #   percentual: [] 
   # }
 
-identificacao = []
-
 class Identificadores
   
-  attr_reader :situacao, :quantidade, :percentual
+  attr_accessor :id, :situacao, :quantidade, :percentual
 
-  def initialize(situacao, quantidade, percentual)
+  def initialize(id, situacao, quantidade, percentual)
+    @id = id
     @situacao = situacao
     @quantidade = quantidade
     @percentual = percentual
@@ -70,20 +69,23 @@ class Identificadores
 
 end
 
+identificador_a = Identificadores.new('a', "necessita da esfera", 0, 0)
+identificador_b = Identificadores.new('b', "necessita de limpeza", 0, 0)
 
-5.times do
-  tipo_de_defeito = solicita_tipo_de_defeito
-  
-  identificador_a = Identificadores.new("necessita da esfera", [:quantidade], [:percentual])
-  identificador_b = Identificadores.new("necessita de limpeza", [:quantidade], [:percentual])
-  
-  identificacao << Identificadores
+identificacao = [
+  identificador_a, 
+  identificador_b
+]
 
-  identificacao.each do |tipo_de_defeito, valor|
-    valor[@quantidade] << 1 
-  end
+3.times do
+  tipo_de_defeito_digitado = solicita_tipo_de_defeito
 
-  puts identificacao
-
+  tipo = identificacao.find { |d| d.id == tipo_de_defeito_digitado }
+  tipo.quantidade += 1
 end
 
+puts "Quantidade de acordo com cada tipo de defeito"
+identificacao.each do |tipo|
+  puts "------------------------"
+  puts "#{tipo.situacao} ~> #{tipo.quantidade}"
+end
