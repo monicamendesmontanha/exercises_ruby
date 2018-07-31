@@ -55,7 +55,7 @@ end
   #   quantidade: [],
   #   percentual: [] 
   # }
-
+  
 class Identificadores
   
   attr_accessor :id, :situacao, :quantidade, :percentual
