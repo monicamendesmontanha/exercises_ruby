@@ -32,7 +32,7 @@ def solicita_tipo_de_defeito
   puts "d. quebrado ou inutilizado"
   print " => Identifique o tipo de defeito encontrado no mouse: "
   tipo = gets.chomp
-  
+
 end 
 
   # "a": {
@@ -60,17 +60,16 @@ class Identificadores
   
   attr_accessor :id, :situacao, :quantidade, :percentual
 
-  def initialize(id, situacao, quantidade, percentual)
+  def initialize(id, situacao, quantidade)
     @id = id
     @situacao = situacao
     @quantidade = quantidade
-    @percentual = percentual
   end
 
 end
 
-identificador_a = Identificadores.new('a', "necessita da esfera", 0, 0)
-identificador_b = Identificadores.new('b', "necessita de limpeza", 0, 0)
+identificador_a = Identificadores.new('a', "necessita da esfera", 0)
+identificador_b = Identificadores.new('b', "necessita de limpeza", 0)
 
 identificacao = [
   identificador_a, 
@@ -84,8 +83,16 @@ identificacao = [
   tipo.quantidade += 1
 end
 
+#def define_percentual(quantidade)
+#  total = quantidade.sum
+#  percentual = tipo.quantidade / total * 100  
+#end
+
+#percentual = define_percentual(tipo.quantidade)
+
 puts "Quantidade de acordo com cada tipo de defeito"
 identificacao.each do |tipo|
+
   puts "------------------------"
-  puts "#{tipo.situacao} ~> #{tipo.quantidade}"
+  puts "#{tipo.situacao} ~> #{tipo.quantidade} unidades correspondente a #{} % dos tipos de defeito"
 end
