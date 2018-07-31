@@ -74,13 +74,30 @@ class CalculaPercentual
 
   def indicadores_com_percentual
     quantidade_total = @indicadores.sum { |indicador| indicador.quantidade}
-    @indicadores.map do |indicador| 
+
+    # alternativa ao map:
+    # array = []
+    # @indicadores.each do |indicador| 
+    #   obj = { 
+    #     situacao: indicador.situacao,  
+    #     quantidade: indicador.quantidade,
+    #     percentual: indicador.quantidade.to_f/quantidade_total.to_f*100 
+    #   }
+
+    #   array << obj
+    # end
+    # return array
+
+    # usando map:
+    resultado = @indicadores.map do |indicador| 
       { 
         situacao: indicador.situacao,  
         quantidade: indicador.quantidade,
         percentual: indicador.quantidade.to_f/quantidade_total.to_f*100 
       }
     end
+
+    resultado
   end
 
 end
