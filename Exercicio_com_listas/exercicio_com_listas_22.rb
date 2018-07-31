@@ -35,27 +35,6 @@ def solicita_tipo_de_defeito
 
 end 
 
-  # "a": {
-  #   situacao: "necessita da esfera",
-  #   quantidade: [],
-  #   percentual: [] 
-  # },
-  # "b": {
-  #   situacao: "necessita de limpeza",
-  #   quantidade: [],
-  #   percentual: [] 
-  # },
-  # "c": {
-  #   situacao: "necessita troca de cabo ou conector",
-  #   quantidade: [],
-  #   percentual: [] 
-  # },
-  # "d": {
-  #   situacao: "quebrado ou inutilizado",
-  #   quantidade: [],
-  #   percentual: [] 
-  # }
-  
 class Identificadores
   
   attr_accessor :id, :situacao, :quantidade, :percentual
@@ -70,29 +49,48 @@ end
 
 identificador_a = Identificadores.new('a', "necessita da esfera", 0)
 identificador_b = Identificadores.new('b', "necessita de limpeza", 0)
+identificador_c = Identificadores.new('c', "necessita troca de cabo ou conector", 0)
+identificador_d = Identificadores.new('d', "quebrado ou inutilizado", 0)
 
 identificacao = [
   identificador_a, 
-  identificador_b
+  identificador_b,
+  identificador_c,
+  identificador_d
 ]
 
-3.times do
+10.times do
   tipo_de_defeito_digitado = solicita_tipo_de_defeito
 
   tipo = identificacao.find { |d| d.id == tipo_de_defeito_digitado }
   tipo.quantidade += 1
 end
 
-#def define_percentual(quantidade)
-#  total = quantidade.sum
-#  percentual = tipo.quantidade / total * 100  
-#end
+class CalculaPercentual
 
-#percentual = define_percentual(tipo.quantidade)
+  def initialize(indicadores)
+    @indicadores = indicadores
+  end
+
+  def indicadores_com_percentual
+    quantidade_total = @indicadores.sum { |indicador| indicador.quantidade}
+    @indicadores.map do |indicador| 
+      { 
+        situacao: indicador.situacao,  
+        quantidade: indicador.quantidade,
+        percentual: indicador.quantidade.to_f/quantidade_total.to_f*100 
+      }
+    end
+  end
+
+end
+
+percentual = CalculaPercentual.new(identificacao)
+indicadores_com_percentual = percentual.indicadores_com_percentual
 
 puts "Quantidade de acordo com cada tipo de defeito"
-identificacao.each do |tipo|
+indicadores_com_percentual.each do |tipo|
 
   puts "------------------------"
-  puts "#{tipo.situacao} ~> #{tipo.quantidade} unidades correspondente a #{} % dos tipos de defeito"
+  puts "#{tipo[:situacao]} ~> #{tipo[:quantidade]} unidades correspondente a #{tipo[:percentual].round(2)} % dos tipos de defeito"
 end
