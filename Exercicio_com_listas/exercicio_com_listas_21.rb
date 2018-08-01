@@ -13,12 +13,10 @@
 #Veículo 1
 #Nome: fusca
 #Km por litro: 7
-#Veículo 2
 
 #Veículo 2
 #Nome: gol
 #Km por litro: 10
-#Veículo 3
 
 #Veículo 3
 #Nome: uno
@@ -41,3 +39,23 @@
 #5 - peugeout               14.5                69.0 litros        R$ 155.17
 
 #O menor consumo é do peugeout.
+
+
+class Carro 
+
+  attr_accessor :veículo, :nome, :km_por_litro
+
+  def initialize(veiculo, nome, km_por_litro)
+    @veiculo = veiculo
+    @nome = nome
+    @km_por_litro = km_por_litro
+  end
+
+end
+
+carro_1 = Carro.new('1', 'Fusca', 0)
+carro_2 = Carro.new('2', 'Gol', 0)
+carro_3 = Carro.new('3', 'Uno', 0)
+carro_4 = Carro.new('4', 'Vectra', 0)
+carro_5 = Carro.new('5', 'Peugeout', 0)
+
