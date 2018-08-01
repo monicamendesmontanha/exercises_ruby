@@ -22,6 +22,18 @@
 #3- necessita troca do cabo ou conector                   15                   15%
 #4- quebrado ou inutilizado                               15                   15%
 
+class Identificadores
+  
+  attr_accessor :id, :situacao, :quantidade
+
+  def initialize(id, situacao, quantidade)
+    @id = id
+    @situacao = situacao
+    @quantidade = quantidade
+  end
+
+end
+
 def solicita_tipo_de_defeito
 
   puts "-------------------------------------------"
@@ -35,29 +47,25 @@ def solicita_tipo_de_defeito
 
 end 
 
-class Identificadores
-  
-  attr_accessor :id, :situacao, :quantidade, :percentual
+# identificador_a = Identificadores.new('a', "necessita da esfera", 0)
+# identificador_b = Identificadores.new('b', "necessita de limpeza", 0)
+# identificador_c = Identificadores.new('c', "necessita troca de cabo ou conector", 0)
+# identificador_d = Identificadores.new('d', "quebrado ou inutilizado", 0)
 
-  def initialize(id, situacao, quantidade)
-    @id = id
-    @situacao = situacao
-    @quantidade = quantidade
-  end
-
-end
-
-identificador_a = Identificadores.new('a', "necessita da esfera", 0)
-identificador_b = Identificadores.new('b', "necessita de limpeza", 0)
-identificador_c = Identificadores.new('c', "necessita troca de cabo ou conector", 0)
-identificador_d = Identificadores.new('d', "quebrado ou inutilizado", 0)
+# identificacao = [
+#   identificador_a, 
+#   identificador_b,
+#   identificador_c,
+#   identificador_d
+# ]
 
 identificacao = [
-  identificador_a, 
-  identificador_b,
-  identificador_c,
-  identificador_d
+  identificador_a = Identificadores.new('a', "necessita da esfera", 0)
+  identificador_b = Identificadores.new('b', "necessita de limpeza", 0)
+  identificador_c = Identificadores.new('c', "necessita troca de cabo ou conector", 0)
+  identificador_d = Identificadores.new('d', "quebrado ou inutilizado", 0)
 ]
+
 
 10.times do
   tipo_de_defeito_digitado = solicita_tipo_de_defeito
