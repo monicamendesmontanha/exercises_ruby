@@ -47,24 +47,25 @@ def solicita_tipo_de_defeito
 
 end 
 
-# identificador_a = Identificadores.new('a', "necessita da esfera", 0)
-# identificador_b = Identificadores.new('b', "necessita de limpeza", 0)
-# identificador_c = Identificadores.new('c', "necessita troca de cabo ou conector", 0)
-# identificador_d = Identificadores.new('d', "quebrado ou inutilizado", 0)
-
-# identificacao = [
-#   identificador_a, 
-#   identificador_b,
-#   identificador_c,
-#   identificador_d
-# ]
+identificador_a = Identificadores.new('a', "necessita da esfera", 0)
+identificador_b = Identificadores.new('b', "necessita de limpeza", 0)
+identificador_c = Identificadores.new('c', "necessita troca de cabo ou conector", 0)
+identificador_d = Identificadores.new('d', "quebrado ou inutilizado", 0)
 
 identificacao = [
-  identificador_a = Identificadores.new('a', "necessita da esfera", 0)
-  identificador_b = Identificadores.new('b', "necessita de limpeza", 0)
-  identificador_c = Identificadores.new('c', "necessita troca de cabo ou conector", 0)
-  identificador_d = Identificadores.new('d', "quebrado ou inutilizado", 0)
+  identificador_a, 
+  identificador_b,
+  identificador_c,
+  identificador_d
 ]
+
+#  é certo? como minimizar esse código acima?
+# identificacao = [
+#   identificador_a = Identificadores.new('a', "necessita da esfera", 0)
+#   identificador_b = Identificadores.new('b', "necessita de limpeza", 0)
+#   identificador_c = Identificadores.new('c', "necessita troca de cabo ou conector", 0)
+#   identificador_d = Identificadores.new('d', "quebrado ou inutilizado", 0)
+# ]
 
 
 10.times do
